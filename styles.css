@@ -1,0 +1,295 @@
+/* =========================================
+   ESTILO CASE STUDY / SINGLE COLUMN EDITORIAL
+========================================= */
+
+:root {
+  --bg-main: #f5f4ef;          /* Fondo crema exacto */
+  --card-bg: #ffffff;          /* Tarjetas blancas */
+  --border-color: #e5e3dc;     /* Bordes finos */
+  --text-primary: #0d0d0d;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --accent-black: #000000;
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAVBAR SUPERIOR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4.5rem;
+  background: rgba(245, 244, 239, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  z-index: 1000;
+}
+
+.nav-logo {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.nav-btn:hover {
+  background: var(--accent-black);
+  color: #ffffff;
+}
+
+/* LAYOUT A UNA COLUMNA CENTRADA */
+.case-study-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 7.5rem 2rem 6rem 2rem;
+}
+
+/* HERO HEADLINE */
+.hero-header {
+  margin-bottom: 3.5rem;
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.project-title {
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+  margin: 0.8rem 0 1.2rem 0;
+  color: var(--text-primary);
+}
+
+.project-lead {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* NAVEGACIÓN STICKY EN FORMA DE PÍLDORAS */
+.sticky-nav-pills {
+  position: sticky;
+  top: 5rem;
+  background: rgba(245, 244, 239, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 0.8rem 0;
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border-color);
+  z-index: 900;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+}
+
+.pill-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.pill-link:hover, .pill-link.active {
+  background: var(--accent-black);
+  color: #ffffff;
+  border-color: var(--accent-black);
+}
+
+/* SECCIONES DEL CASE STUDY */
+.case-section {
+  margin-bottom: 4.5rem;
+  scroll-margin-top: 9rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* TARGETAS I MÈTRIQUES */
+.card-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.featured-media {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+.featured-media img {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+.caption-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.8rem;
+  display: block;
+}
+
+/* VISOR CAD */
+.cad-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cad-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-secondary);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cad-btn.active, .cad-btn:hover {
+  background: var(--accent-black);
+  color: #ffffff;
+  border-color: var(--accent-black);
+}
+
+/* BLOQUES DE RETOS */
+.challenges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.challenge-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.challenge-problem h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+
+.challenge-problem p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.challenge-solution {
+  background: var(--bg-main);
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  border-left: 3px solid var(--accent-black);
+}
+
+/* TECH TAGS */
+.tech-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  margin-right: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .navbar { padding: 0 1.5rem; }
+  .case-study-container { padding-top: 6rem; }
+  .grid-2col, .challenge-item { grid-template-columns: 1fr; }
+}
