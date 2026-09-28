@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensorized Glove Controlled Robotic Arm | ML Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">ML // PORTFOLIO</a>
+    <a href="index.html" class="nav-btn">&larr; BACK TO PROJECTS</a>
+  </nav>
+
+  <main class="case-study-container">
+    
+    <!-- HEADER -->
+    <header class="hero-header">
+      <span class="mono-tag">PROJECT_01 // EMBEDDED & HARDWARE</span>
+      <h1 class="project-title">Sensorized Glove Controlled Robotic Arm</h1>
+      <p class="project-lead">Embedded robotic system capable of reproducing human hand and wrist movements using flex sensors, an IMU MPU6050, microcontrollers, and servo actuation.</p>
+    </header>
+
+    <!-- PÍLDORAS DE NAVEGACIÓN FLOTANTES -->
+    <nav class="sticky-nav-pills">
+      <a href="#overview" class="pill-link active">01. Overview</a>
+      <a href="#cad-design" class="pill-link">02. CAD Design</a>
+      <a href="#architecture" class="pill-link">03. Architecture</a>
+      <a href="#pcb-design" class="pill-link">04. Custom PCBs</a>
+      <a href="#challenges" class="pill-link">05. Problem Solving</a>
+      <a href="#results" class="pill-link">06. Results</a>
+    </nav>
+
+    <!-- 01. OVERVIEW -->
+    <section id="overview" class="case-section">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Objectiu i Proposta</h2>
+      </div>
+      <div class="grid-2col">
+        <div class="card-box">
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">Aquest projecte desenvolupa un sistema interactiu format per un guant sensoritzat emissor i un braç articulat receptor. Mitjançant sensors de flexió i una unitat MPU6050, el braç reprodueix la posició i flexió de la mà humana en temps real.</p>
+          <div>
+            <span class="tech-tag">C/C++</span>
+            <span class="tech-tag">ESP32</span>
+            <span class="tech-tag">MPU6050</span>
+            <span class="tech-tag">SERVO CONTROL</span>
+          </div>
+        </div>
+        <div class="featured-media">
+          <img src="Brazo1.jpg" alt="Prototip final del braç articulat">
+          <span class="caption-text">FIG 1.0 — Prototip final del braç i guant sensoritzat.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. CAD DESIGN -->
+    <section id="cad-design" class="case-section">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Disseny CAD i Evolució Mecànica</h2>
+      </div>
+      <div class="card-box">
+        <div class="cad-controls">
+          <button class="cad-btn active" onclick="showCadStep(1)">v1.0 Inicial</button>
+          <button class="cad-btn" onclick="showCadStep(2)">v2.0 Reforç Base</button>
+          <button class="cad-btn" onclick="showCadStep(3)">v3.0 Integració Servos</button>
+        </div>
+        <div class="grid-2col">
+          <div class="featured-media">
+            <img id="cad-img" src="Brazo3.jpg" alt="Versió CAD">
+          </div>
+          <div>
+            <h3 id="cad-title" style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.6rem;">Modelat CAD v1.0</h3>
+            <p id="cad-desc" style="color: var(--text-secondary); font-size: 0.95rem;">Primera versió del disseny estructural imprès en PLA. Es van identificar punts de fatiga a l'eix principal de rotació.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. ARCHITECTURE -->
+    <section id="architecture" class="case-section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Arquitectura del Sistema</h2>
+      </div>
+      <div class="card-box grid-2col">
+        <div>
+          <h4 style="font-weight: 800; font-size: 1.1rem; margin-bottom: 0.5rem;">Estructura de Comunicació</h4>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Transmissió de dades d'alta freqüència mitjançant Bluetooth (HC-05) a 38400 bauds amb protocol de verificació de paquet integrat per evitar la pèrdua de posició del servo.</p>
+        </div>
+        <div style="background: var(--bg-main); padding: 1.5rem; border-radius: 6px; border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 0.8rem;">
+          [Guant Emissor] &rarr; (Bluetooth) &rarr; [PCA9685 Driver] &rarr; [Servos]
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. REPTES I SOLUCIONS -->
+    <section id="challenges" class="case-section">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Reptes Tècnics i Solucions</h2>
+      </div>
+      <div class="challenges-list">
+        <div class="challenge-item">
+          <div class="challenge-problem">
+            <h4>Soroll en Sensors Flex</h4>
+            <p>Valors instables llegits pels pins ADC a causa d'interferències electromagnètiques dels motors.</p>
+          </div>
+          <div class="challenge-solution">
+            <strong>Solució:</strong> Implementació d'un filtre de mitjana mòbil per software i condensadors de desacoblament.
+          </div>
+        </div>
+
+        <div class="challenge-item">
+          <div class="challenge-problem">
+            <h4>Pics de Consum de Potència</h4>
+            <p>Reinicis de l'esp32 en activar simultàniament tots els servomotors.</p>
+          </div>
+          <div class="challenge-solution">
+            <strong>Solució:</strong> Disseny de PCB amb separació estricta de potència (5V 5A) i lògica.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. RESULTATS -->
+    <section id="results" class="case-section">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Resultats</h2>
+      </div>
+      <div class="card-box">
+        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7;">El prototip va aconseguir una precisió de seguiment angular del 92% amb una latència inferior a 40ms, complint amb els requisits inicials del projecte i permetent un control fluid en temps real.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
