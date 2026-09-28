@@ -1,69 +1,69 @@
-// Dades de les seccions del disseny CAD
-const cadStepsData = {
-  1: {
-    title: "Modelat CAD v1.0",
-    desc: "Primera versió del disseny estructural imprès en PLA. Es van identificar punts de fatiga a l'eix principal de rotació i flexió.",
-    img: "Brazo1.jpg" // O la imatge que correspon Swallow v1
-  },
-  2: {
-    title: "Reforç Base v2.0",
-    desc: "Redisseny dels suports inferiors amb major gruix de paret i optimització de toleràncies per als rodaments de la base.",
-    img: "Brazo3.jpg"
-  },
-  3: {
-    title: "Integració Servos v3.0",
-    desc: "Versió final optimitzada amb allotjaments dedicats per als servomotors, reduint el fregament de les politges de tracció.",
-    img: "Brazo4.jpg"
-  }
-};
+// =========================================
+// INTERACCIONES Y LÓGICA DE NAVEGACIÓN
+// =========================================
 
-/**
- * Canvia la informació de la secció CAD segons el pas seleccionat
- * @param {number} stepNumber - Número del pas (1, 2 o 3)
- */
-function showCadStep(stepNumber) {
-  const data = cadStepsData[stepNumber];
-  
-  if (!data) return;
-
-  // 1. Actualitzar contingut del DOM
-  document.getElementById('cad-title').innerText = data.title;
-  document.getElementById('cad-desc').innerText = data.desc;
-  document.getElementById('cad-img').src = data.img;
-  document.getElementById('cad-img').alt = data.title;
-
-  // 2. Actualitzar estat actiu dels botons
-  const buttons = document.querySelectorAll('.cad-step-btn');
-  buttons.forEach((btn, index) => {
-    if (index + 1 === stepNumber) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-}
-
-// Ressaltar l'enllaç actiu del sidebar al fer scroll (ScrollSpy)
 document.addEventListener('DOMContentLoaded', () => {
+
+  // 1. SCROLLSPY (ACTUALIZAR ÍNDICE LATERAL AL HACER SCROLL)
   const sections = document.querySelectorAll('.project-section');
   const navLinks = document.querySelectorAll('.sidebar-link');
 
-  window.addEventListener('scroll', () => {
-    let current = '';
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px', // Activa la sección cuando está en la parte superior/media
+    threshold: 0
+  };
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (pageYOffset >= (sectionTop - 150)) {
-        current = section.getAttribute('id');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
       }
     });
+  }, observerOptions);
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  });
+  sections.forEach(section => observer.observe(section));
+
 });
+
+// 2. CAMBIO INTERACTIVO DE PASOS CAD
+function showCadStep(step) {
+  const img = document.getElementById('cad-img');
+  const title = document.getElementById('cad-title');
+  const desc = document.getElementById('cad-desc');
+  const buttons = document.querySelectorAll('.cad-step-btn');
+
+  // Quitar estado activo de todos los botones
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  // Activar botón pulsado
+  if (buttons[step - 1]) {
+    buttons[step - 1].classList.add('active');
+  }
+
+  // Actualizar contenido según el paso seleccionado
+  switch(step) {
+    case 1:
+      img.src = 'Brazo3.jpg';
+      title.innerText = 'Modelat CAD v1.0';
+      desc.innerText = 'Primera versió del disseny estructural imprès en PLA. Es van identificar punts de fatiga a l\'eix principal de rotació.';
+      break;
+    case 2:
+      img.src = 'Brazo2.jpg'; // Cambia por tu imagen del paso 2
+      title.innerText = 'Reforç Estructural v2.0';
+      desc.innerText = 'Redisseny de la base articulada augmentant el gruix de paret i afegint coixinets de bola per reduir la fricció.';
+      break;
+    case 3:
+      img.src = 'Brazo4.jpg'; // Cambia por tu imagen del paso 3
+      title.innerText = 'Integració de Servos v3.0';
+      desc.innerText = 'Ajust final dels acoblaments mecànics per als servomotors i optimització del guiat de cables intern.';
+      break;
+  }
+}
