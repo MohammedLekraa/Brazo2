@@ -1,11 +1,7 @@
-/* =========================================
-   ESTILO EDITORIAL / LIGHT TECH CON DIVISOR
-========================================= */
-
 :root {
-  --bg-main: #f5f4ef;          /* Fondo crema principal */
-  --card-bg: #ffffff;          /* Tarjetas blancas */
-  --border-color: #e5e3dc;     /* Bordes finos */
+  --bg-main: #f5f4ef;
+  --card-bg: #ffffff;
+  --border-color: #e5e3dc;
   --text-primary: #0d0d0d;
   --text-secondary: #555555;
   --text-muted: #888888;
@@ -74,7 +70,7 @@ body {
   color: #ffffff;
 }
 
-/* LAYOUT CON LÍNEA DIVISORIA VERTICAL */
+/* LAYOUT DUES COLUMNES */
 .project-layout {
   max-width: 1350px;
   margin: 0 auto;
@@ -84,10 +80,10 @@ body {
   min-height: 100vh;
 }
 
-/* BARRA LATERAL (SIDEBAR) CON BORDES Y LÍNEA DIVISORIA */
+/* BARRA LATERAL AMB LÍNIA DIVISÒRIA VERTICAL */
 .project-sidebar {
   padding: 3.5rem 2rem 3.5rem 1.5rem;
-  border-right: 1px solid var(--border-color); /* <--- LÍNEA VERTICAL SEPARADORA */
+  border-right: 1px solid var(--border-color); /* LÍNIA VERTICAL SEPARADORA */
   background: rgba(245, 244, 239, 0.5);
 }
 
@@ -113,7 +109,6 @@ body {
   gap: 0.2rem;
 }
 
-/* INTERACCIÓN EN ENLACES DEL MENÚ */
 .sidebar-link {
   position: relative;
   display: flex;
@@ -135,13 +130,11 @@ body {
   transition: color 0.2s ease;
 }
 
-/* EFECTO HOVER EN EL ÍNDICE */
 .sidebar-link:hover {
   color: var(--text-primary);
-  transform: translateX(4px); /* Desplazamiento sutil al pasar el ratón */
+  transform: translateX(4px);
 }
 
-/* ESTADO ACTIVO CON BARRA LATERAL DESTACADA */
 .sidebar-link.active {
   color: var(--text-primary);
   background: var(--card-bg);
@@ -156,7 +149,7 @@ body {
 .sidebar-link.active::before {
   content: '';
   position: absolute;
-  left: -2rem; /* Se alinea justo en la línea vertical divisoria */
+  left: -2rem;
   top: 20%;
   height: 60%;
   width: 3px;
@@ -164,7 +157,7 @@ body {
   border-radius: 0 2px 2px 0;
 }
 
-/* ÁREA DE CONTENIDO PRINCIPAL */
+/* ÁREA DE CONTINGUT PRINCIPAL */
 .project-content {
   padding: 3.5rem 3rem 6rem 3.5rem;
 }
@@ -200,7 +193,6 @@ body {
   margin: 0.4rem 0 1.5rem 0;
 }
 
-/* CARDS I CONTENEDORES */
 .card-box {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -237,7 +229,6 @@ body {
   display: block;
 }
 
-/* BOTONES INTERACTIVOS CAD */
 .cad-steps-nav {
   display: flex;
   gap: 0.6rem;
@@ -270,7 +261,6 @@ body {
   align-items: center;
 }
 
-/* DIAGRAMA ARQUITECTURA */
 .arch-diagram {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
@@ -310,7 +300,6 @@ body {
   text-align: center;
 }
 
-/* REPTES I SOLUCIONS */
 .challenges-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -348,7 +337,6 @@ body {
   color: var(--text-primary);
 }
 
-/* TAGS */
 .tech-tag {
   display: inline-block;
   font-family: var(--font-mono);
@@ -362,7 +350,6 @@ body {
   margin-top: 0.4rem;
 }
 
-/* RESPONSIVE */
 @media (max-width: 992px) {
   .project-layout { grid-template-columns: 1fr; }
   .project-sidebar { display: none; }
